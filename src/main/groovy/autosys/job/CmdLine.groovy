@@ -1,4 +1,4 @@
-package main.autosys.job
+package autosys.job
 
 class CmdLine {
 	String _cmd;

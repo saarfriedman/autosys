@@ -1,4 +1,4 @@
-package main.autosys.instance;
+package autosys.instance;
 
 /**
  * 

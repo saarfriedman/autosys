@@ -1,6 +1,6 @@
-package main.autosys.instance
+package autosys.instance
 
-import main.autosys.job.*;
+import autosys.job.*;
 
 /**
  * 

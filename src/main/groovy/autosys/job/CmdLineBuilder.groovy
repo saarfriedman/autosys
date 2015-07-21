@@ -1,4 +1,6 @@
-package main.autosys.job
+
+package autosys.job
+
 
 class CmdLineBuilder {
 

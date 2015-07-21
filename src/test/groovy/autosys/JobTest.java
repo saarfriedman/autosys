@@ -1,6 +1,7 @@
-package test.autosys;
 
-import main.autosys.job.*;
+package autosys;
+
+import autosys.job.*;
 
 public class JobTest {
 

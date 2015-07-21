@@ -1,4 +1,4 @@
-package main.autosys.job
+package autosys.job
 
 import java.util.*;
 
@@ -12,11 +12,13 @@ import java.util.*;
  */
 class Job {
 	public String _name
-	List<Job> preds;
-	Job _parent;
+	public List<Job> _preds;
+	public List<Job> _succs;
+	public Job _parent;
 	public CmdLine _cmdLine;
-	JobStatus _status;
+	public JobStatus _status;
 	public JobGraph _graph;
+	public List<Job> _children;
 	
 	Job(String name) { 
 		_name=name
@@ -26,6 +28,8 @@ class Job {
 		_cmdLine = null
 		_status = JobStatus.NotSet
 		_graph = null;
+		_children = new ArrayList<Job>();
+		List<Job> _children;
 		System.out.println("added job " + name)
 	}
 	
@@ -36,9 +40,11 @@ class Job {
 		_parent = p;
 	}
 	
-	void setCmdLine(CmdLine cl) {
-		_cmdLine = cl;
+	void addChild(Job c) {
+		_children.add(c);
+		c.setParent(this);
 	}
+	
 	
 	void setPredecessor(Job pr) {
 		_preds.add(pr)
