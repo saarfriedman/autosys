@@ -1,0 +1,18 @@
+[
+	"job": {
+		"name" : "run_test1",
+		"box" : "root",
+		"command" : "ls",
+		"host" : "localhost",
+		"profile" : "~/scheduler/profile1.txt",				
+	},
+	"job": {
+		"name" : "run_test2",
+		"box" : "root",
+		"command" : "ls",
+		"host" : "localhost",
+		"profile" : "~/scheduler/profile1.txt",		
+		"pred" : "run_test1"		
+	}	
+	
+]
