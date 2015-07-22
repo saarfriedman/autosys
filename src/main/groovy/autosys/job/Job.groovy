@@ -16,7 +16,6 @@ class Job {
 	public List<Job> _succs;
 	public Job _parent;
 	public CmdLine _cmdLine;
-	public JobStatus _status;
 	public JobGraph _graph;
 	public List<Job> _children;
 	
@@ -26,7 +25,6 @@ class Job {
 		_succs = new ArrayList<Job>()
 		_parent = null
 		_cmdLine = null
-		_status = JobStatus.NotSet
 		_graph = null;
 		_children = new ArrayList<Job>();
 		List<Job> _children;
@@ -40,9 +38,17 @@ class Job {
 		_parent = p;
 	}
 	
+	Job getParent() {
+		return _parent;
+	}
+	
 	void addChild(Job c) {
 		_children.add(c);
 		c.setParent(this);
+	}
+	
+	ArrayList<Job> getChildren() {
+		return _chlidren;
 	}
 	
 	

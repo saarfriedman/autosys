@@ -14,18 +14,10 @@ import autosys.job.*;
 
 class JobInstance extends Job {
 	
-	/**
-	 * Makes a copy of Job and all child jobs (basically job graph).
-	 * @param j - job to be copied from (instance is created from a Job template.
-	 * @param p - parameters used to create a customized instance
-	 */
+	public JobStatus _status;
 	
-	JobInstance(Job j, JobParameters p) {
-		
-		_name = p.getPrefix() + j.getName();
-		_cmdLine = j.getCommandLine()
-		
-		
+	JobInstance() {
+		_status = JobStatus.NotSet
 	}
 	
 	void setStatus(JobStatus status) {

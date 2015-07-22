@@ -24,4 +24,16 @@ public class JobGraph {
 		_jobGraph = new HashMap<String, Job>();
 	}
 	
+	boolean contains(String key) {
+		return false;
+	}
+	
+	Job getJob(String key) {
+		return _jobGraph.get(key);
+	}
+	
+	void addJob(Job job) {
+		_jobGraph.put(job.getName(), job);
+	}
+	
 }
