@@ -20,7 +20,7 @@ public class JobGraph {
 
 	HashMap<String, Job> _jobGraph = null;
 	
-	JobGraph() {
+	public JobGraph() {
 		_jobGraph = new HashMap<String, Job>();
 	}
 	
@@ -28,11 +28,11 @@ public class JobGraph {
 		return false;
 	}
 	
-	Job getJob(String key) {
+	public Job getJob(String key) {
 		return _jobGraph.get(key);
 	}
 	
-	void addJob(Job job) {
+	public void addJob(Job job) {
 		_jobGraph.put(job.getName(), job);
 	}
 	

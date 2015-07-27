@@ -34,29 +34,29 @@ public class Job {
 	/**
 	 * Box containing this job
 	 */
-	void setParent(Job p) {
+	public void setParent(Job p) {
 		_parent = p;
 	}
 	
-	Job getParent() {
+	public Job getParent() {
 		return _parent;
 	}
 	
-	void addChild(Job c) {
+	public void addChild(Job c) {
 		_children.add(c);
 		c.setParent(this);
 	}
 	
-	List<Job> getChildren() {
+	public List<Job> getChildren() {
 		return _children;
 	}
 	
 	
-	void setPredecessor(Job pr) {
+	public void setPredecessor(Job pr) {
 		_preds.add(pr);
 	}
 	
-	void setSuccessor(Job s) {
+	public void setSuccessor(Job s) {
 		_succs.add(s);
 	}
 
@@ -83,5 +83,6 @@ public class Job {
 	public void setGraph(JobGraph _graph) {
 		this._graph = _graph;
 	}
-	
+
+
 }
