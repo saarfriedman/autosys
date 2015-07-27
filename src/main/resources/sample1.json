@@ -1,12 +1,19 @@
+{	
+"jobs" : 
 [
-	"job": {
+	
+	{
+		"name" : "root"
+		"env" : { "x" : "4", "y" : "hi", "comment" : "env variables accessible to all children" }
+	},
+	{
 		"name" : "run_test1",
 		"box" : "root",
-		"command" : "ls",
+		"command" : "ls $x",
 		"host" : "localhost",
-		"profile" : "~/scheduler/profile1.txt",				
+		"profile" : "~/scheduler/profile1.txt"				
 	},
-	"job": {
+	{
 		"name" : "run_test2",
 		"box" : "root",
 		"command" : "ls",
@@ -14,5 +21,9 @@
 		"profile" : "~/scheduler/profile1.txt",		
 		"pred" : "run_test1"		
 	}	
-	
 ]
+
+
+"comment" : "source profile, define env variables, execute command" 
+	
+}

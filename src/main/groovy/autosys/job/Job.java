@@ -1,4 +1,4 @@
-package autosys.job
+package autosys.job;
 
 import java.util.*;
 
@@ -10,8 +10,8 @@ import java.util.*;
  * A Job can be executed.
  *
  */
-class Job {
-	public String _name
+public class Job {
+	public String _name;
 	public List<Job> _preds;
 	public List<Job> _succs;
 	public Job _parent;
@@ -19,16 +19,16 @@ class Job {
 	public JobGraph _graph;
 	public List<Job> _children;
 	
-	Job(String name) { 
-		_name=name
-		_preds = new ArrayList<Job>()
-		_succs = new ArrayList<Job>()
-		_parent = null
-		_cmdLine = null
+	public Job(String name) { 
+		_name=name;
+		_preds = new ArrayList<Job>();
+		_succs = new ArrayList<Job>();
+		_parent = null;
+		_cmdLine = null;
 		_graph = null;
 		_children = new ArrayList<Job>();
 		List<Job> _children;
-		System.out.println("added job " + name)
+		System.out.println("added job " + name);
 	}
 	
 	/**
@@ -47,17 +47,17 @@ class Job {
 		c.setParent(this);
 	}
 	
-	ArrayList<Job> getChildren() {
-		return _chlidren;
+	List<Job> getChildren() {
+		return _children;
 	}
 	
 	
 	void setPredecessor(Job pr) {
-		_preds.add(pr)
+		_preds.add(pr);
 	}
 	
 	void setSuccessor(Job s) {
-		_succs.add(s)
+		_succs.add(s);
 	}
 
 	public String getName() {
