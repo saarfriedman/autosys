@@ -1,20 +1,21 @@
-package autosys.job
+package autosys.job;
 
-class CmdLine {
+public class CmdLine {
 	String _cmd;
 	String _host;	// IP or host
 	String _profile;
 		
 	CmdLine() {
-		_cmd = null  // default 
-		_host = "localhost"
-		_profile = null
+		_cmd = null;  // default 
+		_host = "localhost";
+		_profile = null;
 	}
 	
-	CmdLine(String command) 
+	public CmdLine(String command) 
 	{
 		_cmd = command;
-		_host = "localhost"
+		_host = "localhost";
+		_profile = null;
 	}
 	
 	
@@ -40,7 +41,7 @@ class CmdLine {
 	 */
 	void execute() throws Exception {
 		if (_cmd == null) {
-			throw Exception("Command is null.  Cannot execute.")
+			throw new Exception("Command is null.  Cannot execute.");
 		}
 	}
 

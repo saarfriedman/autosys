@@ -8,6 +8,12 @@ import java.util.*;
  * 
  * @author saar
  * A Job can be executed.
+ * 
+ * A job has an environment (bindings) which impact itself and child jobs.
+ * This make sense if the execution of the job (through command line) actually
+ * takes code.  Code can come from Json, but more appropriately should come from extending the framework.
+ * 
+ * CmdLine is suitable for simple job only.  A more comprehensive solution should come from a groovy source code file.
  *
  */
 public class Job {
@@ -18,6 +24,9 @@ public class Job {
 	public CmdLine _cmdLine;
 	public JobGraph _graph;
 	public List<Job> _children;
+	private JobEnvironment _env;
+	private boolean _envReady;
+
 	
 	public Job(String name) { 
 		_name=name;
@@ -27,6 +36,9 @@ public class Job {
 		_cmdLine = null;
 		_graph = null;
 		_children = new ArrayList<Job>();
+		_env = null;
+		_envReady = false;
+				
 		List<Job> _children;
 		System.out.println("added job " + name);
 	}
@@ -82,6 +94,28 @@ public class Job {
 
 	public void setGraph(JobGraph _graph) {
 		this._graph = _graph;
+	}
+
+	/**
+	 * Method should be called only after all relationships are set.  The reason is that the environment 
+	 * is derived from parent.
+	 * 
+	 * @return environment which includes ancestors' definitions.
+	 */
+	public JobEnvironment getEnv() {
+		
+		if (!_envReady) {
+			JobEnvironment pEnv = getParent().getEnv();
+			
+			// merge environment with the current _env variable
+			_env.addParentEnv(pEnv);
+		}
+		
+		return _env;
+	}
+
+	public void setEnv(JobEnvironment _env) {
+		this._env = _env;
 	}
 
 
