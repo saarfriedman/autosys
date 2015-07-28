@@ -3,6 +3,8 @@ package autosys.job;
 import java.util.*;
 
 public class JobEnvironment extends HashMap<String, Object> {
+	
+	public JobEnvironment() {}
 
 	public void addParentEnv(JobEnvironment env)
 	{

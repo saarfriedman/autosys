@@ -71,6 +71,7 @@ public class JobDefinitionReader {
 	}
 
 	public void parseJob(JSONObject jsonJob) throws Exception {
+		
 		String name = (String) jsonJob.get("name");
 
 		Job job = new Job(name);
@@ -78,17 +79,25 @@ public class JobDefinitionReader {
 		// add all data that does not involve job references.
 
 		String command = (String) jsonJob.get("command");
-		if (command != null)
+		if (command != null) {
 			job.setCmdLine(new CmdLine(command));
-
+		}
+		
 		String profile = (String) jsonJob.get("profile");
-		if (profile != null)
+		if (profile != null) {
 			job.getCmdLine().setProfile(profile);
-
+		}
+		
 		String host = (String) jsonJob.get("host");
-		if (host != null)
+		if (host != null) {
 			job.getCmdLine().setHost(profile);
-
+		}
+		
+		JSONObject env = (JSONObject)jsonJob.get("env");
+		if (env != null) {
+			job.setEnv(parseEnv(env));
+		}
+		
 		_graph.addJob(job);
 		job.setGraph(_graph);
 
@@ -122,4 +131,27 @@ public class JobDefinitionReader {
 		}
 
 	}
+	
+	/**
+	 * Create an environment where all the values are Strings, based on JSon definition.
+	 * 
+	 * @param env
+	 * @return
+	 * @throws Exception
+	 */
+	public JobEnvironment parseEnv(JSONObject env) throws Exception {
+		Iterator<String> envIt = env.keySet().iterator();
+		
+		JobEnvironment environment = new JobEnvironment();
+		
+		while (envIt.hasNext()) {
+			String key = envIt.next();
+			String value = (String)env.get(key);
+			System.out.println("inserting : " + key + "-> " + value);
+			environment.put(key,  value);
+		}
+		
+		return environment;
+	}
+
 }
