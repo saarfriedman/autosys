@@ -1,6 +1,6 @@
 package autosys.job;
 
-import java.util.HashMap;
+import java.util.*;
 
 
 /**
@@ -16,12 +16,13 @@ import java.util.HashMap;
  *
  */
 
-public class JobGraph {
+public class JobGraph extends HashMap<String, Job> {
 
-	HashMap<String, Job> _jobGraph = null;
+	ArrayList<Job> _roots;
 	
 	public JobGraph() {
-		_jobGraph = new HashMap<String, Job>();
+		//_jobGraph = new HashMap<String, Job>();
+		_roots = null;
 	}
 	
 	boolean contains(String key) {
@@ -29,11 +30,35 @@ public class JobGraph {
 	}
 	
 	public Job getJob(String key) {
-		return _jobGraph.get(key);
+		return get(key);
 	}
 	
 	public void addJob(Job job) {
-		_jobGraph.put(job.getName(), job);
+		put(job.getName(), job);
+	}
+	
+	public List<Job> getRoots()
+	{
+		if (_roots != null) return _roots;
+		
+		_roots = new ArrayList<Job>();
+		
+		Iterator jobIt = keySet().iterator();
+		
+		while (jobIt.hasNext()) {
+			Job job = getJob((String)jobIt.next());
+			Job root = findRoot(job);
+			if (!_roots.contains(root)) _roots.add(root);
+		}
+		
+		return _roots;
+	}
+	
+	private Job findRoot(Job j) {
+		if (j == null) return null;
+		if (j.getParent() == null) return j;
+		// otherwise, return parent (assume no cycles).
+		return findRoot(j.getParent());
 	}
 	
 }

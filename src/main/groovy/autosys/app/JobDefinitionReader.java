@@ -27,7 +27,6 @@ public class JobDefinitionReader {
 	 */
 	public Job parseScript(String filePath) {
 		// TODO Auto-generated method stub
-		Job j = new Job("test");
 
 		if (filePath == null) {
 			filePath = "/home/saar/proj/workspace/eclipse/autosys/src/main/resources/sample1.json";
@@ -66,7 +65,13 @@ public class JobDefinitionReader {
 			ex.printStackTrace();
 		}
 
-		return j;
+		Iterator jobIt =  _graph.keySet().iterator();
+		if (jobIt.hasNext()) {
+			String firstJob = (String) jobIt.next();
+			return _graph.getJob(firstJob);
+		} else {
+			return null;
+		}
 
 	}
 
@@ -91,6 +96,11 @@ public class JobDefinitionReader {
 		String host = (String) jsonJob.get("host");
 		if (host != null) {
 			job.getCmdLine().setHost(profile);
+		}
+		
+		String script = (String) jsonJob.get("script");
+		if (script != null) {
+			job.getCmdLine().setScript(script);
 		}
 		
 		JSONObject env = (JSONObject)jsonJob.get("env");

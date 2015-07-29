@@ -13,7 +13,14 @@ import java.util.*;
  * This make sense if the execution of the job (through command line) actually
  * takes code.  Code can come from Json, but more appropriately should come from extending the framework.
  * 
- * CmdLine is suitable for simple job only.  A more comprehensive solution should come from a groovy source code file.
+ * CmdLine is suitable for simple job only.  A more comprehensive solution should come from a 
+ * groovy source code file.  One way is to create a GroovyScript object which can run instead of simple
+ * command line.
+ * 
+ * command line script - runs a local script (on the remote machine).
+ * script object - loads the script when reading the definition so script object is kept on server,
+ *   and is serialized to run on remote machine.  It may, in turn, call a local script on the remote
+ *   machine.
  *
  */
 public class Job {
@@ -119,4 +126,9 @@ public class Job {
 	}
 
 
+	public String toString()
+	{
+		String str =  "{ name : " + _name + "} "; 
+		return str;
+	}
 }

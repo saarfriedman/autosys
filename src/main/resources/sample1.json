@@ -3,8 +3,17 @@
 [
 	
 	{
-		"name" : "root"
+		"name" : "root",
 		"env" : { "x" : "4", "y" : "hi", "comment" : "env variables accessible to all children" }
+	},
+	{
+		"name" : "box2",
+		"box" : "root"
+	},
+	{
+		"name" : "jobX",
+		"box" : "box2",
+		"command" : "cd $cwd"
 	},
 	{
 		"name" : "run_test1",
@@ -20,6 +29,14 @@
 		"host" : "localhost",
 		"profile" : "~/scheduler/profile1.txt",		
 		"pred" : "run_test1"		
+	},
+	{
+		"name" : "script_test",
+		"box" : "root",
+		"command" : "ls",
+		"host" : "localhost",
+		"script" : "src/main/resources/script1.groovy",
+		"pred" : "run_test2"		
 	}	
 ]
 

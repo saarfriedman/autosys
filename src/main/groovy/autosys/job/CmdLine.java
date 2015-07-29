@@ -7,11 +7,13 @@ public class CmdLine {
 	String _cmd;
 	String _host; // IP or host
 	String _profile;
+	String _script;
 
-	CmdLine() {
+	public CmdLine() {
 		_cmd = null; // default
 		_host = "localhost";
 		_profile = null;
+		_script = null;
 	}
 
 	public CmdLine(String command) {
@@ -35,14 +37,21 @@ public class CmdLine {
 	public void setHost(String _host) {
 		this._host = _host;
 	}
+	
+	public void setScript(String script) {
+		_script = script;
+	}
 
 	/**
 	 * executes command on remote host, after sourcing profile
 	 */
-	void execute() throws Exception {
+	public void execute() throws Exception {
 		if (_cmd == null) {
 			throw new Exception("Command is null.  Cannot execute.");
 		}
+		System.out.println("executing command: " + _cmd);
+		
+		if (_script != null) executeScript(_script);
 	}
 
 	public void executeScript(String scriptName) {
