@@ -33,6 +33,7 @@ public class Job {
 	public List<Job> _children;
 	private JobEnvironment _env;
 	private boolean _envReady;
+	private Integer _level;
 
 	
 	public Job(String name) { 
@@ -45,6 +46,7 @@ public class Job {
 		_children = new ArrayList<Job>();
 		_env = null;
 		_envReady = false;
+		_level = null;
 				
 		List<Job> _children;
 		System.out.println("added job " + name);
@@ -102,6 +104,14 @@ public class Job {
 	public void setGraph(JobGraph _graph) {
 		this._graph = _graph;
 	}
+	
+	public Integer getLevel() {
+		if (_level == null) {
+			if (getParent() == null) _level=1;
+			else _level = getParent().getLevel() + 1;
+		}
+		return _level;
+	}
 
 	/**
 	 * Method should be called only after all relationships are set.  The reason is that the environment 
@@ -128,7 +138,8 @@ public class Job {
 
 	public String toString()
 	{
-		String str =  "{ name : " + _name + "} "; 
+		String str =  "{ name : " + _name + ", level : " + getLevel() + "} "; 
+		
 		return str;
 	}
 }
