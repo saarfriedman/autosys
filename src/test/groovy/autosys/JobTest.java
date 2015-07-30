@@ -3,6 +3,9 @@ package autosys;
 
 import autosys.job.*;
 import autosys.app.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.*;
 
 
@@ -16,8 +19,9 @@ public class JobTest {
 
 		try {
 
+			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			JobDefinitionReader reader = new JobDefinitionReader();
-			Job j = reader.parseScript(filePath);
+			Job j = reader.parseScript(br);
 
 			System.out.println("Read job: " + j);
 			j.getCmdLine().execute();

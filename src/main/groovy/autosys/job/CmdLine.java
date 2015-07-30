@@ -20,6 +20,7 @@ public class CmdLine {
 		_cmd = command;
 		_host = "localhost";
 		_profile = null;
+		System.out.println("Set command: " + _cmd);
 	}
 
 	public String getProfile() {

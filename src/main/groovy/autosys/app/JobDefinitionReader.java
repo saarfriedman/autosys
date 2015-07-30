@@ -25,18 +25,19 @@ public class JobDefinitionReader {
 	 *            - points to a JSon file.
 	 * @return a new Job
 	 */
-	public Job parseScript(String filePath) {
+	public Job parseScript(Reader br) {
 		// TODO Auto-generated method stub
 
+		/*
 		if (filePath == null) {
 			filePath = "/home/saar/proj/workspace/eclipse/autosys/src/main/resources/sample1.json";
 		}
-
+*/
 		try {
-
-			FileReader reader = new FileReader(filePath);
+			
+			//FileReader reader = new FileReader(filePath);
 			JSONParser jsonParser = new JSONParser();
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(br);
 			// get an array from the JSON object
 			JSONArray jobs = (JSONArray) jsonObject.get("jobs");
 			Iterator<JSONObject> jobsIterator = jobs.iterator();
