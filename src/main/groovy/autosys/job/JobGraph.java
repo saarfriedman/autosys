@@ -61,4 +61,17 @@ public class JobGraph extends HashMap<String, Job> {
 		return findRoot(j.getParent());
 	}
 	
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		
+		Iterator<Job> it = getRoots().iterator();
+		
+		while (it.hasNext()) {
+			sb.append(it.next().toString());
+		}
+		
+		return sb.toString();		
+	}
+	
 }

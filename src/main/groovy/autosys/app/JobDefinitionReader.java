@@ -126,6 +126,7 @@ public class JobDefinitionReader {
 				throw new Exception("Illegal box: " + box + "for job: " + name);
 			}
 			job.setParent(parent);
+			parent.addChild(job);
 		}
 
 		String pred = (String) jsonJob.get("pred");

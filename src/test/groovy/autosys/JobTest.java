@@ -22,12 +22,9 @@ public class JobTest {
 			System.out.println("Read job: " + j);
 			j.getCmdLine().execute();
 			
-			Iterator<Job> rIt = j.getGraph().getRoots().iterator();
-			
-			System.out.println("found the following roots:");
-			while (rIt.hasNext()) {
-				System.out.println(rIt.next());
-			}
+			System.out.println("Job definitions: ");
+			System.out.println(j.getGraph());
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

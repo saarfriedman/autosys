@@ -35,6 +35,7 @@ public class Job {
 	private boolean _envReady;
 	private Integer _level;
 
+	private static String separator = System.getProperty( "line.separator" );
 	
 	public Job(String name) { 
 		_name=name;
@@ -138,8 +139,19 @@ public class Job {
 
 	public String toString()
 	{
-		String str =  "{ name : " + _name + ", level : " + getLevel() + "} "; 
+		StringBuilder sb = new StringBuilder(spacePad(getLevel() * 5));
+		sb.append("{ name : ").append(_name).append(", level : ").append(getLevel()).append("} ")
+								.append(separator); 
 		
-		return str;
+		Iterator<Job> it = getChildren().iterator();
+		
+		while (it.hasNext()) {
+			sb.append(it.next().toString());
+		}
+		return sb.toString();
+	}
+	
+	private String spacePad(int n) {
+	    return String.format("%"+n+"s", " ");
 	}
 }
