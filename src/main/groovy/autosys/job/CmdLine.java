@@ -38,7 +38,7 @@ public class CmdLine {
 	public void setHost(String _host) {
 		this._host = _host;
 	}
-	
+
 	public void setScript(String script) {
 		_script = script;
 	}
@@ -51,8 +51,9 @@ public class CmdLine {
 			throw new Exception("Command is null.  Cannot execute.");
 		}
 		System.out.println("executing command: " + _cmd);
-		
-		if (_script != null) executeScript(_script);
+
+		if (_script != null)
+			executeScript(_script);
 	}
 
 	public void executeScript(String scriptName) {
@@ -65,9 +66,17 @@ public class CmdLine {
 
 			GroovyShell shell = new GroovyShell(binding);
 			shell.evaluate(br);
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void executeScript(String scriptName, String method)
+			throws Exception 
+	{
+		new GroovyShell().parse(new File(scriptName))
+				.invokeMethod(method, null);
 	}
 
 }
